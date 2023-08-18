@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>IH722 - Diseño de prototipo de interfaz de usuario</title>
+    <title>IH726 - Lenguajes de programación Back End</title>
 </head>
 
 <body>
