@@ -30,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['name'], $_POST['email
             'name' => $name,
             'email' => $email,
             'password' => $passwd,
+            'timestamp' => time(),
     ];
 
     file_put_contents('sessions.json', json_encode($data, JSON_PRETTY_PRINT));
