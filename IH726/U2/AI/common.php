@@ -76,3 +76,28 @@ $template['footer'] = <<<EOF
 </body>
 </html>
 EOF;
+
+
+
+if (!file_exists(__DIR__."/uploads/") || !is_dir(__DIR__."/uploads/") || !is_writable(__DIR__."/uploads/")):
+
+echo $template['header'];
+
+?>
+
+    <div class="w-full max-w-xl mx-auto mt-6">
+        <div class="bg-red-100 border-l-4 border-red-500 text-red-700 p-4" role="alert">
+            <p class="font-bold">Error:</p>
+            <p>El directorio <strong>upload</strong> no existe o no tiene permisos de escritura.</p>
+            <p>Debe existir dentro de <small><?= __DIR__ ?></small>.</p>
+        </div>
+        <div class="mt-4 text-center">
+            <a href="index.php" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded cursor-pointer">Volver</a>
+        </div>
+    </div>
+
+<?php
+
+echo $template['footer'];
+exit;
+endif;
