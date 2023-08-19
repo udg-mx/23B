@@ -38,10 +38,10 @@
 <?php
 
 
-$mensaje = "";
-$archivoSubido = false;
-$target_dir = __DIR__."/uploads/"; // Directorio donde quieres guardar el archivo. Asegúrate de que tenga los permisos adecuados.
-purgeFiles($target_dir);
+$errorMessage = "";
+$fileUploaded = false;
+$targetDir = __DIR__."/uploads/"; // Directorio donde quieres guardar el archivo. Asegúrate de que tenga los permisos adecuados.
+purgeFiles($targetDir);
 
 function purgeFiles($path): void {
 
@@ -57,33 +57,33 @@ function purgeFiles($path): void {
 // Verifica si el formulario ha sido enviado
 if (isset($_POST["submit"]) && $_FILES["fileToUpload"]["tmp_name"]) {
 
-    $finfo = finfo_open(FILEINFO_MIME_TYPE);
-    $mime = finfo_file($finfo, $_FILES["fileToUpload"]["tmp_name"]);
-    finfo_close($finfo);
+    $fileInfo = finfo_open(FILEINFO_MIME_TYPE);
+    $mime = finfo_file($fileInfo, $_FILES["fileToUpload"]["tmp_name"]);
+    finfo_close($fileInfo);
 
-    $target_file = $target_dir . $_FILES["fileToUpload"]["name"];
+    $targetFile = $targetDir . $_FILES["fileToUpload"]["name"];
     $fileType = strtolower(pathinfo($_FILES["fileToUpload"]["name"], PATHINFO_EXTENSION));
 
     if(!in_array($mime, ['image/jpeg', 'image/jpg', 'image/png'])) {
-        $mensaje = "El archivo no es una imagen válida.";
+        $errorMessage = "El archivo no es una imagen válida.";
     }
 
     if($fileType != "jpg" && $fileType != "png" && $fileType != "jpeg") {
-        $mensaje = "Lo siento, sólo se permiten archivos JPG, JPEG & PNG.";
+        $errorMessage = "Lo siento, sólo se permiten archivos JPG, JPEG & PNG.";
     }
 
     // Verifica el tamaño
     elseif ($_FILES["fileToUpload"]["size"] > 500000) {
-        $mensaje = "Lo siento, tu archivo es demasiado grande.";
+        $errorMessage = "Lo siento, tu archivo es demasiado grande.";
     }
 
     // Si no hay errores, intenta subir el archivo
     else {
-        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            $mensaje = "El archivo ha sido subido con éxito.";
-            $archivoSubido = true;
+        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetFile)) {
+            $errorMessage = "El archivo ha sido subido con éxito.";
+            $fileUploaded = true;
         } else {
-            $mensaje = "Lo siento, hubo un error subiendo tu archivo.";
+            $errorMessage = "Lo siento, hubo un error subiendo tu archivo.";
         }
     }
 }
@@ -109,13 +109,13 @@ if (isset($_POST["submit"]) && $_FILES["fileToUpload"]["tmp_name"]) {
 
 
 
-                            <?php if ($mensaje): ?>
+                            <?php if ($errorMessage): ?>
                                 <div class="bg-blue-100 border-t-4 border-blue-500 rounded-b text-blue-900 px-4 py-3 shadow-md" role="alert">
-                                    <p class="font-bold"><?php echo $mensaje; ?></p>
+                                    <p class="font-bold"><?php echo $errorMessage; ?></p>
                                 </div>
                             <?php endif; ?>
 
-                            <?php if ($archivoSubido): ?>
+                            <?php if ($fileUploaded): ?>
 
 
                             <div class="mt-4 p-4 bg-gray-100 border rounded">
