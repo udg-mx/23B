@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && $_GET['name'] && $_GET['email'])
             <div class="flex items-center lg:order-2">
 
                 <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">IH726 - Lenguajes de programación Back End</span>
-                <span class="bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-400 border border-gray-500">U3.A1</span>
+                <span class="bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-400 border border-gray-500">U3.A2</span>
                 <span class="bg-blue-100 text-blue-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">222959611 - &#70;&#101;&#114;&#110;&#97;&#110;&#100;&#111; &#79;&#106;&#101;&#100;&#97;</span>
 
             </div>
