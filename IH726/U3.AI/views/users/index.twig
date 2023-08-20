@@ -1,0 +1,47 @@
+
+<table class="min-w-full bg-white border rounded shadow-md">
+    <thead>
+    <tr>
+        <th class="px-4 py-2 border-b justify-start">Nombre</th>
+        <th class="px-4 py-2 border-b justify-start">Correo</th>
+        <th class="px-4 py-2 border-b justify-start">Tipo</th>
+        <th class="px-4 py-2 border-b">&nbsp;</th>
+    </tr>
+    </thead>
+    <tbody>
+
+        {% if users %}
+            {% for user in users %}
+            <tr>
+                <td class="px-4 py-2 border-b">{{ user.name|raw }}</td>
+                <td class="px-4 py-2 border-b">{{ user.email|raw }}</td>
+                <td class="px-4 py-2 border-b">
+                    {% if user.type == 'admin' %}Administrador{% else %}Usuario{% endif %}
+                </td>
+                <td class="px-4 py-2 border-b flex space-x-2 justify-end">
+                    <a href="/?action=user_edit&id={{ user.id }}" class="hover:text-blue-700"><i class="far fa-edit text-blue-500"></i></a>
+                    {% if user.id != current_user_id %}
+                    <a href="/?action=user_remove&id={{ user.id }}" class="hover:text-red-700"><i class="fas fa-trash text-red-500"></i></a>
+                    {% else %}
+                        <a href="#" onclick="return false;" class="hover:text-red-700"><i class="fas fa-trash text-gray-400"></i></a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td class="px-4 py-2 border-b">No hay usuarios</td>
+                <td class="px-4 py-2 border-b">&nbsp;</td>
+                <td class="px-4 py-2 border-b">&nbsp;</td>
+                <td class="px-4 py-2 border-b">&nbsp;</td>
+            </tr>
+        {% endif %}
+
+    </tbody>
+</table>
+<hr>
+<div class="flex justify-end mt-5">
+    <a href="/?action=users_new" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Agregar Usuario
+    </a>
+</div>

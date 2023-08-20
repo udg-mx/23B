@@ -1,0 +1,38 @@
+    <form action="/" method="post" autocomplete="off">
+        <input type="hidden" name="action" value="{{ action }}">
+        {% if user.id %}
+            <input type="hidden" name="id" value="{{ user.id }}">
+        {% endif %}
+        <h2 class="mb-4 text-center font-bold">Agregar Usuario</h2>
+        <div class="mb-4">
+            <label for="name" class="block text-sm font-medium text-gray-600">Nombre:</label>
+            <input type="text" id="name" name="name" value="{{ user.name|raw }}" required class="mt-1 p-2 w-full border rounded-md">
+        </div>
+
+        <div class="mb-4">
+            <label for="email" class="block text-sm font-medium text-gray-600">Correo electrónico:</label>
+            <input type="email" id="email" name="email" value="{{ user.email|raw }}" required class="mt-1 p-2 w-full border rounded-md" >
+        </div>
+
+        <div class="mb-4">
+            <label for="password" class="block text-sm font-medium text-gray-600">Contraseña:</label>
+            <input type="password" id="password" name="password" {% if user is empty %}required{% endif%} class="mt-1 p-2 w-full border rounded-md">
+        </div>
+
+        {% if currentUser == 0 %}
+
+            <div class="mb-4">
+            <label for="password" class="block text-sm font-medium text-gray-600">Tipo de Usuario:</label>
+            <select name="type" id="type" class="mt-1 p-2 w-full border rounded-md">
+                <option value="admin" {% if user.id and user.type == 'admin'%}selected{% endif%} >Administrador</option>
+                <option value="user" {% if user.type != 'admin'%}selected{% endif%}>Usuario</option>
+            </select>
+        </div>
+        {% endif %}
+
+
+        <div class="text-end">
+            <a href="/?action=users" class="w-50 p-2 text-white bg-gray-500 rounded-md hover:bg-blue-600">Cancelar</a>
+            <input type="submit" value="{{ action_label|raw }}" class="w-50 p-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">
+        </div>
+    </form>

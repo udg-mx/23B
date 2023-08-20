@@ -1,0 +1,81 @@
+<div class="flex flex-col w-100">
+    <h1 class="text-2xl font-bold text-gray-900 mb-5">Editar Documento</h1>
+
+
+
+
+    <div class="flex flex-col w-100">
+
+        <form id="documentForm" action="" method="post" onsubmit="return false;">
+            <input type="hidden" name="action" value="document_save">
+            <input type="hidden" name="id" value="{{ document.id }}">
+
+            <div class="flex flex-col w-100">
+                <div class="flex flex-col w-100">
+                    <input type="text" name="name" id="name" value="{{ document.name|raw }}" placeholder="Nombre" class="h-10 px-2 py-5 mb-5 text-lg bg-gray-100 border-2 border-gray-200 rounded-lg focus:border-indigo-500 focus:outline-none" required>
+                </div>
+            </div>
+
+
+            <textarea name="contentHTML" id="contentHTML">{{ document.content|raw }}</textarea>
+
+
+            <div class="flex justify-end">
+
+                <a href="/?action=documents" data-type="excel" class="submitButton h-8 px-4 m-2 text-sm text-gray-100 transition-colors duration-150 bg-gray-500 rounded-lg focus:shadow-outline hover:bg-gray-800">Cancelar</a>
+                <button type="button" class="submitButton h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">Guardar</button>
+
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+
+
+<script>
+
+
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+
+        tinymce.init({
+            selector: '#contentHTML',
+        });
+
+        let submitButtons = document.getElementsByClassName('submitButton');
+
+        for(let i = 0; i < submitButtons.length; i++) {
+            submitButtons[i].addEventListener('click', function() {
+
+                const formulario = document.getElementById('documentForm');
+
+
+                let isValid = true;
+                let message = '';
+
+                for (let element of formulario.elements) {
+                    if (!element.checkValidity() && element.name === 'name') {
+                        isValid = false;
+                        message += " El nombre no es válido.\n";
+                    }
+                }
+
+                if (!isValid) {
+                    event.preventDefault();
+                    alert(message);
+                    return;
+                }
+
+                tinymce.triggerSave();
+                formulario.submit();
+
+            });
+        }
+
+    });
+
+
+</script>
