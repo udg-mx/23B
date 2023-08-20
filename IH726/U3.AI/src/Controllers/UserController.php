@@ -81,7 +81,7 @@ class UserController extends ControllerWeb
         }
         $this->userRepo()->save($user);
 
-        $this->redirect("/?action=users");
+        $this->redirect(BASE_URL."?action=users");
     }
 
     #[NoReturn] protected function user_remove(): void
@@ -93,6 +93,6 @@ class UserController extends ControllerWeb
         }
 
         $this->userRepo()->remove($this->currentUser());
-        $this->redirect('/?action=users');
+        $this->redirect(BASE_URL."?action=users");
     }
 }

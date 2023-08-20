@@ -1,5 +1,5 @@
 <div class="max-w-md mx-auto mt-6 bg-white p-5 rounded-lg shadow-md w-3/5">
-    <form action="index.php" method="post" autocomplete="off">
+    <form action="{{ ModuleUrl }}" method="post" autocomplete="off">
         <input type="hidden" name="action" value="register">
         <h2 class="mb-4 text-center font-bold">Registro</h2>
         <div class="mb-4">
@@ -19,7 +19,7 @@
 
 
         <div class="text-end">
-            <a href="/" class="w-50 p-2 text-white bg-gray-500 rounded-md hover:bg-blue-600">Cancelar</a>
+            <a href="{{ ModuleUrl }}" class="w-50 p-2 text-white bg-gray-500 rounded-md hover:bg-blue-600">Cancelar</a>
             <input type="submit" value="Registrar" class="w-50 p-2 text-white bg-blue-500 rounded-md hover:bg-blue-600">
         </div>
     </form>

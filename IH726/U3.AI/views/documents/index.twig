@@ -13,11 +13,11 @@
                 <tr>
                     <td class="px-4 py-2 border-b">{{ document.name|raw }}</td>
                     <td class="px-4 py-2 border-b flex space-x-2 justify-end">
-                        <a href="/?action=document_edit&id={{ document.id }}" class="hover:text-blue-700"><i class="far fa-edit text-blue-500"></i></a>
-                        <a href="/?action=document_download_pdf&id={{ document.id }}" class="hover:text-green-700"><i class="far fa-file-pdf text-green-500"></i></a>
-                        <a href="/?action=document_download_doc&id={{ document.id }}" class="hover:text-indigo-700"><i class="far fa-file-word text-indigo-500"></i></a>
-                        <a href="/?action=document_download_xls&id={{ document.id }}" class="hover:text-purple-700"><i class="far fa-file-excel text-purple-500"></i></a>
-                        <a href="/?action=document_remove&id={{ document.id }}" class="hover:text-red-700"><i class="fas fa-trash text-red-500"></i></a>
+                        <a href="{{ ModuleUrl }}?action=document_edit&id={{ document.id }}" class="hover:text-blue-700"><i class="far fa-edit text-blue-500"></i></a>
+                        <a href="{{ ModuleUrl }}?action=document_download_pdf&id={{ document.id }}" class="hover:text-green-700"><i class="far fa-file-pdf text-green-500"></i></a>
+                        <a href="{{ ModuleUrl }}?action=document_download_doc&id={{ document.id }}" class="hover:text-indigo-700"><i class="far fa-file-word text-indigo-500"></i></a>
+                        <a href="{{ ModuleUrl }}?action=document_download_xls&id={{ document.id }}" class="hover:text-purple-700"><i class="far fa-file-excel text-purple-500"></i></a>
+                        <a href="{{ ModuleUrl }}?action=document_remove&id={{ document.id }}" class="hover:text-red-700"><i class="fas fa-trash text-red-500"></i></a>
                     </td>
                 </tr>
             {% endfor %}
@@ -33,7 +33,7 @@
 </table>
 <hr>
 <div class="flex justify-end mt-5">
-    <a href="/?action=documents_new" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+    <a href="{{ ModuleUrl }}?action=documents_new" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
         Agregar Documento
     </a>
 </div>

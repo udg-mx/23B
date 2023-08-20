@@ -71,7 +71,7 @@ class UsersController extends ControllerWeb
         $document->setType($type);
         $this->userRepo()->add($document);
 
-        $this->redirect("/?action=users");
+        $this->redirect(BASE_URL."?action=users");
 
     }
 }

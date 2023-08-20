@@ -37,13 +37,13 @@ class DocumentController extends ControllerWeb
         $document->setName((string) $this->input->get('name'));
         $document->setContent((string) $this->input->get('contentHTML'));
         $this->documentRepo()->save($document);
-        $this->redirect('/?action=documents');
+        $this->redirect(BASE_URL . "?action=documents");
     }
 
     #[NoReturn] protected function document_remove(): void
     {
         $this->documentRepo()->remove($this->currentDocument());
-        $this->redirect('/?action=documents');
+        $this->redirect(BASE_URL . "?action=documents");
     }
 
     #[NoReturn] protected function document_download_pdf(): void

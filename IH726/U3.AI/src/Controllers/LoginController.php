@@ -12,7 +12,7 @@ class LoginController extends ControllerWeb
     #[NoReturn] public function init(): void
     {
         if ($this->isLogged()) {
-            $this->redirect("/");
+            $this->redirect(BASE_URL);
         }
 
         if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['action']) && $_GET['action'] === 'register')
@@ -99,7 +99,7 @@ class LoginController extends ControllerWeb
         }
 
         $this->app()->authInstance()->setSession($user);
-        $this->redirect("/");
+        $this->redirect(BASE_URL);
     }
 
 }

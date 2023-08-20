@@ -52,7 +52,7 @@ class ImageController extends ControllerWeb
                     $image->setFileLocation($fileName);
                     ImageRepository::instance()->add($image);
 
-                    $this->redirect("/");
+                    $this->redirect(BASE_URL);
 
 
                 } else {
@@ -93,7 +93,7 @@ class ImageController extends ControllerWeb
             $this->error('No fue posible eliminar la imagen.');
         }
 
-        $this->redirect("/");
+        $this->redirect(BASE_URL);
     }
 
 

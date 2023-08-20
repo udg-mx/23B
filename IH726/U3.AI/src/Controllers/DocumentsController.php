@@ -46,7 +46,7 @@ class DocumentsController extends ControllerWeb
         $document->setContent($html);
         $this->documentRepo()->add($document);
 
-        $this->redirect("/?action=documents");
+        $this->redirect(BASE_URL."?action=documents");
 
     }
 }
