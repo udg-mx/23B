@@ -10,6 +10,8 @@ class Layout
 
     static public function renderView(string $view, array $data): string
     {
+
+        $data['BaseUrl'] = BASE_URL;
         // twig render
         try {
             $loader = new \Twig\Loader\FilesystemLoader(dirname(__DIR__, 2) . '/views');
