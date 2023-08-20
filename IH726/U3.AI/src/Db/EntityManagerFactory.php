@@ -16,7 +16,7 @@ class EntityManagerFactory
     {
         if (self::$entityManager === null) {
 
-            $dbFile = dirname(__DIR__, 2) . '/database.sqlite';
+            $dbFile = dirname(__DIR__, 2) . '/cache/database.sqlite';
             $config = new Configuration();
 
             if (!file_exists(dirname(__DIR__, 2)."/cache/proxies"))
