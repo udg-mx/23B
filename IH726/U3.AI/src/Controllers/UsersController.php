@@ -16,7 +16,7 @@ class UsersController extends ControllerWeb
 
         if (!$this->user()->isAdmin())
         {
-            $this->error('No tienes permisos para acceder a esta sección', '/');
+            $this->error('No tienes permisos para acceder a esta sección', BASE_URL);
         }
     }
 

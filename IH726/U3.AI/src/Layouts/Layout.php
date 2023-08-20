@@ -90,7 +90,7 @@ class Layout
     {
         $data = (new ViewOptions())->setCenterContent()->toArray();
         $data['message'] = $message;
-        $data['back'] = $back ?? "";
+        $data['back'] = $back ? : BASE_URL;
         static::renderSimple(self::renderView('dialogues/error.twig', $data), 'Error' . ($title ? " - {$title}" : ''));
     }
 
@@ -99,7 +99,7 @@ class Layout
 
         $data = (new ViewOptions())->setCenterContent()->toArray();
         $data['message'] = $message;
-        $data['continue'] = $continue ? : "/";
+        $data['continue'] = $continue ? : BASE_URL;
         static::renderSimple(self::renderView('dialogues/success.twig', $data), $title);
     }
 

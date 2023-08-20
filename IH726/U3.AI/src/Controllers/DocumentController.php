@@ -21,7 +21,7 @@ class DocumentController extends ControllerWeb
         return $this->_document ??= (function (): Document
         {
             $document = $this->documentRepo()->findOneById((int) $this->input->get('id'));
-            if (!$document) $this->error('No se ha encontrado el documento', '/?action=documents');
+            if (!$document) $this->error('No se ha encontrado el documento', BASE_URL . '?action=documents');
             return $document;
         })();
 

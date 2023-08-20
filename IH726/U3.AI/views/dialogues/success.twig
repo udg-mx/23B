@@ -3,6 +3,6 @@
         <p>{{ message|raw }}</p>
     </div>
     <div class="mt-4 text-center">
-        <a href="{{ continue|raw }}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded cursor-pointer">Continuar</a>
+        <a href="{{ continue|default(BaseUrl)|raw }}" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded cursor-pointer">Continuar</a>
     </div>
 </div>

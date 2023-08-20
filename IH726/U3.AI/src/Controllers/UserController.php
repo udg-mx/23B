@@ -18,7 +18,7 @@ class UserController extends ControllerWeb
 
         if (!$this->user()->isAdmin())
         {
-            $this->error('No tienes permisos para acceder a esta sección', '/');
+            $this->error('No tienes permisos para acceder a esta sección', '');
         }
 
         $this->currentUser();
@@ -35,7 +35,7 @@ class UserController extends ControllerWeb
         return $this->_user ??= (function (): User
         {
             $user = $this->userRepo()->findUserById((int) $this->input->get('id'));
-            if (!$user) $this->error('No se ha encontrado el usuario', '/?action=users');
+            if (!$user) $this->error('No se ha encontrado el usuario', BASE_URL . '?action=users');
             return $user;
         })();
 
@@ -89,7 +89,7 @@ class UserController extends ControllerWeb
 
         if ((int) $this->currentUser()->getId() === (int) $this->user()->getId())
         {
-            $this->error('No puedes eliminar tu propio usuario', '/?action=users');
+            $this->error('No puedes eliminar tu propio usuario', BASE_URL . "?action=users");
         }
 
         $this->userRepo()->remove($this->currentUser());

@@ -42,15 +42,15 @@ class LoginController extends ControllerWeb
         $password = $_POST['password'] ?? null;
         $password = $password ? trim($password) : null;
 
-        if ($email === null) $this->error('El correo no es válido', "/?action=register");
-        if ($name === null) $this->error('El nombre no es válido', "/?action=register");
-        if ($password === null) $this->error('La contraseña no es válida', "/?action=register");
+        if ($email === null) $this->error('El correo no es válido', BASE_URL . "?action=register");
+        if ($name === null) $this->error('El nombre no es válido', BASE_URL . "?action=register");
+        if ($password === null) $this->error('La contraseña no es válida', BASE_URL . "?action=register");
 
         $user = UserRepository::instance()->findUserByEmail($email);
 
         if ($user)
         {
-            $this->error('No es posible registrarse con ese correo. El usuario ya existe', "/?action=register");
+            $this->error('No es posible registrarse con ese correo. El usuario ya existe', BASE_URL . "?action=register");
         }
 
         $user = new User();
@@ -69,7 +69,7 @@ class LoginController extends ControllerWeb
 
         UserRepository::instance()->add($user);
 
-        $this->success("Cuenta Creada", "/", "Cuenta Creada");
+        $this->success("Cuenta Creada", "", "Cuenta Creada");
 
     }
 
@@ -95,7 +95,7 @@ class LoginController extends ControllerWeb
 
         if (!$user)
         {
-            $this->error('Usuario y/o contraseña inválida', "/");
+            $this->error('Usuario y/o contraseña inválida', BASE_URL);
         }
 
         $this->app()->authInstance()->setSession($user);
