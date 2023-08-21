@@ -62,7 +62,7 @@ class Auth
     #[NoReturn] public function logout(): void
     {
         session_destroy();
-        header('Location: /');
+        header('Location: ' . BASE_URL);
         exit;
 
     }
