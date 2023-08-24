@@ -38,7 +38,7 @@ const routes = [
 const router = createRouter({
     history: createWebHistory(),
     routes,
-    base: process.env.VUE_APP_BASE_URL ? process.env.VUE_APP_BASE_URL : '/',
+    base: process.env.APP_BASE_URL ? process.env.APP_BASE_URL : '/',
 });
 
 router.beforeEach((to, from, next) => {
