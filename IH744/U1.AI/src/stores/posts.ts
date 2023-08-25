@@ -14,6 +14,14 @@ function getPosts(): Post[] {
     return [];
 }
 
+function putPost(newPost: Post): void {
+    const posts = getPosts();
+    const highestId = posts.length > 0 ? Math.max(...posts.map(post => post.id)) : 0;
+    newPost.id = highestId + 1;
+    posts.push(newPost);
+    storePosts(posts);
+}
+
 function pullPost(id: number): Post | null {
     const posts = getPosts();
     return posts.find(post => post.id === id) || null;
@@ -44,15 +52,6 @@ function initializeStorageIfEmpty(force = false): void
     }
 
 }
-
-function putPost(newPost: Post): void {
-    const posts = getPosts();
-    const highestId = posts.length > 0 ? Math.max(...posts.map(post => post.id)) : 0;
-    newPost.id = highestId + 1;
-    posts.push(newPost);
-    storePosts(posts);
-}
-
 function resetPosts(): void
 {
     initializeStorageIfEmpty(true);
