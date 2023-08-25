@@ -13,7 +13,7 @@
 <script lang="ts">
 import { defineComponent, ref, onMounted } from 'vue';
 import { RouteLocationNormalized, useRoute } from 'vue-router';
-import { pullPost } from '@/stores/posts';
+import { getPost } from '@/stores/posts';
 import type { Post } from '@/models/Post';
 import AdminPostForm from "@/components/AdminPostForm.vue";
 
@@ -29,7 +29,7 @@ export default defineComponent({
 
     onMounted(() => {
       const postId = parseInt(props.id, 10);
-      post.value = pullPost(postId) as Post;
+      post.value = getPost(postId) as Post;
     });
 
     const beforeRouteLeave = (to: RouteLocationNormalized) => {

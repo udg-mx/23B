@@ -29,7 +29,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import { pushPost, putPost } from '@/stores/posts';
+import { updatePost, addPost } from '@/stores/posts';
 import type { Post } from '@/models/Post';
 import { format } from 'date-fns';
 import { es } from 'date-fns/locale';
@@ -60,9 +60,9 @@ const submitForm = async () => {
   console.log(post.value.date);
 
   if (currentPost) {
-    pushPost(post.value);
+    updatePost(post.value);
   } else {
-    putPost(post.value);
+    addPost(post.value);
   }
 
   router.push('/admin/posts');

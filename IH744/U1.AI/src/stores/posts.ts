@@ -14,7 +14,7 @@ function getPosts(): Post[] {
     return [];
 }
 
-function putPost(newPost: Post): void {
+function addPost(newPost: Post): void {
     const posts = getPosts();
     const highestId = posts.length > 0 ? Math.max(...posts.map(post => post.id)) : 0;
     newPost.id = highestId + 1;
@@ -22,7 +22,7 @@ function putPost(newPost: Post): void {
     storePosts(posts);
 }
 
-function pullPost(id: number): Post | null {
+function getPost(id: number): Post | null {
     const posts = getPosts();
     return posts.find(post => post.id === id) || null;
 }
@@ -36,7 +36,7 @@ function deletePost(id: number): void {
 
 }
 
-function pushPost(updatedPost: Post): void {
+function updatePost(updatedPost: Post): void {
     const posts = getPosts();
     const postIndex = posts.findIndex(post => post.id === updatedPost.id);
     if (postIndex !== -1) {
@@ -59,4 +59,4 @@ function resetPosts(): void
 initializeStorageIfEmpty();
 
 
-export { getPosts, putPost, pullPost, pushPost, resetPosts, deletePost };
+export { getPosts, addPost, getPost, updatePost, resetPosts, deletePost };

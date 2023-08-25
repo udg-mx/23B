@@ -23,7 +23,7 @@
 import {defineComponent, onMounted, ref, watch} from 'vue';
 import {RouteLocationNormalized, useRoute} from 'vue-router';
 import type {Post} from "@/models/Post";
-import {pullPost} from "@/stores/posts";
+import {getPost} from "@/stores/posts";
 
 
 export default defineComponent({
@@ -39,7 +39,7 @@ export default defineComponent({
 
     onMounted(() => {
       const postId = parseInt(props.id, 10);
-      post.value = pullPost(postId) as Post;
+      post.value = getPost(postId) as Post;
       if (post.value) {
         document.title = post.value.title;
       }
