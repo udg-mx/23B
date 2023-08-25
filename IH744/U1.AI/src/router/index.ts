@@ -31,11 +31,6 @@ const router = createRouter({
       meta: { title: 'Editar Post' }
     },
     {
-      path: '/admin/posts/:id/delete',
-      name: 'adminPostsDelete',
-      component: AdminView
-    },
-    {
       path: '/post/:id',
       name: 'post',
       component: PostComponent,

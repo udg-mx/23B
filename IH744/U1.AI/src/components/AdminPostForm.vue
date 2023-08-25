@@ -57,7 +57,6 @@ const submitForm = async () => {
   }
 
   post.value.date = format(new Date(), 'd ' + 'MMMM, yyyy', { locale: es });
-  console.log(post.value.date);
 
   if (currentPost) {
     updatePost(post.value);
