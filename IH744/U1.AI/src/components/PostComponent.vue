@@ -5,8 +5,10 @@
       <div class="p-4">
         <h2 class="text-2xl mb-4">{{ post.title }}</h2>
         <p class="text-gray-600 mb-4">{{ post.body }}</p>
-        <div class="text-gray-500 mb-2">{{ post.date }} - {{ post.author }}</div>
-        <router-link to="/" class="text-blue-600">Volver a la lista de posts</router-link>
+        <div class="text-gray-500 mb-2"><span class="text-sm">{{ post.date }}</span> - <em class="text-xs">{{ post.author }}</em></div>
+        <div class="flex justify-end">
+          <RouterLink to="/" class="text-blue-600">Volver</RouterLink>
+        </div>
       </div>
     </div>
 
@@ -15,6 +17,7 @@
     </div>
   </div>
 </template>
+
 
 <script lang="ts">
 import {defineComponent, onMounted, ref, watch} from 'vue';
