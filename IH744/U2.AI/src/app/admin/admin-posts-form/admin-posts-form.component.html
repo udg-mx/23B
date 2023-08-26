@@ -1,0 +1,22 @@
+<form class="max-w-lg mx-auto">
+  <div class="mb-4">
+    <label for="title" class="block font-medium text-gray-700">Título</label>
+    <input [(ngModel)]="post.title" type="text" id="title" class="mt-1 p-2 w-full border rounded" />
+  </div>
+  <div class="mb-4">
+    <label for="description" class="block font-medium text-gray-700">Descripción</label>
+    <textarea [(ngModel)]="post.description" id="description" class="mt-1 p-2 w-full border rounded" rows="3"></textarea>
+  </div>
+  <div class="mb-4">
+    <label for="body" class="block font-medium text-gray-700">Contenido</label>
+    <textarea [(ngModel)]="post.body" id="body" class="mt-1 p-2 w-full border rounded" rows="12"></textarea>
+  </div>
+  <div class="mb-4">
+    <label for="author" class="block font-medium text-gray-700">Autor</label>
+    <input [(ngModel)]="post.author" type="text" id="author" class="mt-1 p-2 w-full border rounded" />
+  </div>
+  <div class="flex justify-end">
+    <a routerLink="/admin/posts" type="button" class="mr-2 px-4 py-2 bg-gray-300 text-black rounded">Cancelar</a>
+    <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded">Continuar</button>
+  </div>
+</form>

@@ -1,0 +1,62 @@
+<div class="p-8 container mx-auto">
+  <h1 class="text-3xl font-bold mb-6">Área de Administración</h1>
+
+
+  <div *ngIf="posts.length; else noPosts">
+    <table class="min-w-full bg-white">
+      <thead>
+      <tr>
+        <th class="w-16 py-2 px-4 border-b">ID</th>
+        <th class="w-20 py-2 px-4 border-b">Thumbnail</th>
+        <th class="py-2 px-4 border-b">Nombre</th>
+        <th class="w-40 py-2 px-4 border-b">Acciones</th>
+      </tr>
+      </thead>
+      <tbody>
+
+
+      <tr *ngFor="let post of posts">
+        <td class="py-2 px-4 border-b">{{ post.id }}</td>
+        <td class="py-2 px-4 border-b">
+          <a [routerLink]="['/post', post.id]" >
+            <img src="{{ post.imageUrl }}" alt="Thumbnail" class="h-16 w-16 object-cover">
+          </a>
+        </td>
+        <td class="py-2 px-4 border-b">{{ post.title }}</td>
+        <td class="py-2 px-4 border-b flex space-x-4 justify-end items-center py-6">
+
+          <button class="bg-red-500 text-white p-2 rounded flex items-center justify-center">
+            <fa-icon [icon]="faTrash"></fa-icon>
+          </button >
+
+          <button [routerLink]="['/admin/posts', post.id, 'edit']"  class="bg-blue-500 text-white p-2 rounded flex items-center justify-center">
+            <fa-icon [icon]="faEdit"></fa-icon>
+          </button>
+
+        </td>
+      </tr>
+
+
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #noPosts>
+    <div class="text-center py-10">
+      <p>No hay posts disponibles en este momento.</p>
+    </div>
+  </ng-template>
+
+
+  <div class="flex justify-end mt-4">
+    <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+      Reestablecer Base de Datos
+      <fa-icon [icon]="faRefresh"></fa-icon>
+    </button>
+
+    <button routerLink="/admin/posts/new" class="ml-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+      Agregar
+      <fa-icon [icon]="faPlus"></fa-icon>
+    </button>
+  </div>
+</div>

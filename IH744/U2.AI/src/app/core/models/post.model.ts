@@ -7,3 +7,15 @@ export interface Post {
   date: string;
   author: string;
 }
+
+export function emptyPost(): Post {
+  return {
+    id: 0,
+    imageUrl: '',
+    title: '',
+    description: '',
+    body: '',
+    date: '',
+    author: ''
+  } as Post;
+}
