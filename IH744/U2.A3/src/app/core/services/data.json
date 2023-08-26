@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "imageUrl": "https://udg.s3.amazonaws.com/LDSW/IH744/U1.A1/ph01.webp",
+    "title": "Título del post 1",
+    "description": "Descripción breve del post 1...",
+    "body": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    "date": "22 de Agosto, 2023",
+    "author": "Juan Pérez"
+  },
+  {
+    "id": 2,
+    "imageUrl": "https://udg.s3.amazonaws.com/LDSW/IH744/U1.A1/ph02.webp",
+    "title": "Título del post 2",
+    "description": "Descripción breve del post 2...",
+    "body": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    "date": "23 de Agosto, 2023",
+    "author": "Ana Gómez"
+  },
+  {
+    "id": 3,
+    "imageUrl": "https://udg.s3.amazonaws.com/LDSW/IH744/U1.A1/ph03.webp",
+    "title": "Título del post 3",
+    "body": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+    "body": "Descripción breve del post 3...",
+    "date": "24 de Agosto, 2023",
+    "author": "Pedro Sánchez"
+  }
+]

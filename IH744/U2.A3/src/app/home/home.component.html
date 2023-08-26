@@ -1,0 +1,21 @@
+<div *ngIf="posts.length; else noPosts">
+  <div class="mx-auto max-w-xl" *ngFor="let post of posts">
+    <article class="bg-white p-5 rounded-md shadow-md mb-5">
+      <a [routerLink]="['/post', post.id]">
+        <img [src]="post.imageUrl" alt="Imagen del post" class="post-img w-full h-64 object-cover rounded-md">
+        <h2 class="text-2xl font-bold mt-5">{{ post.title }}</h2>
+      </a>
+      <p class="text-gray-600 mt-2">{{ post.description }}</p>
+      <div class="mt-4 flex justify-between items-center">
+        <span class="text-gray-500">{{ post.date }}</span>
+        <span class="text-gray-500">{{ post.author }}</span>
+      </div>
+    </article>
+  </div>
+</div>
+
+<ng-template #noPosts>
+  <div class="text-center py-10">
+    <p>No hay posts disponibles en este momento.</p>
+  </div>
+</ng-template>
