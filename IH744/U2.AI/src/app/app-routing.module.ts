@@ -6,6 +6,7 @@ import {AboutComponent} from "./pages/about/about.component";
 import {ContactComponent} from "./pages/contact/contact.component";
 import {AdminPostsComponent} from "./admin/admin-posts/admin-posts.component";
 import {AdminPostsEditComponent} from "./admin/admin-posts-edit/admin-posts-edit.component";
+import {AdminPostsNewComponent} from "./admin/admin-posts-new/admin-posts-new.component";
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'contact', component: ContactComponent },
   { path: 'post/:id', component: PostDetailComponent },
   { path: 'admin/posts', component: AdminPostsComponent },
-  { path: 'admin/posts/:id/edit', component: AdminPostsEditComponent }
+  { path: 'admin/posts/:id/edit', component: AdminPostsEditComponent },
+  { path: 'admin/posts/new', component: AdminPostsNewComponent }
 ];
 
 @NgModule({

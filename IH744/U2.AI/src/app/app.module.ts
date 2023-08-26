@@ -12,6 +12,7 @@ import { AdminPostsComponent } from './admin/admin-posts/admin-posts.component';
 import { AdminPostsEditComponent } from './admin/admin-posts-edit/admin-posts-edit.component';
 import { AdminPostsNewComponent } from './admin/admin-posts-new/admin-posts-new.component';
 import { AdminPostsFormComponent } from './admin/admin-posts-form/admin-posts-form.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AdminPostsFormComponent } from './admin/admin-posts-form/admin-posts-fo
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
