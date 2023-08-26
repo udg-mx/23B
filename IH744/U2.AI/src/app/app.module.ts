@@ -13,6 +13,8 @@ import {AdminPostsNewComponent} from './admin/admin-posts-new/admin-posts-new.co
 import {AdminPostsFormComponent} from './admin/admin-posts-form/admin-posts-form.component';
 import {FormsModule} from "@angular/forms";
 import {ConfirmModalComponent} from './core/components/confirm-modal/confirm-modal.component';
+import {NgOptimizedImage} from "@angular/common";
+import {ScreencastComponent} from './pages/screencast/screencast.component';
 
 @NgModule({
   declarations: [
@@ -26,12 +28,14 @@ import {ConfirmModalComponent} from './core/components/confirm-modal/confirm-mod
     AdminPostsNewComponent,
     AdminPostsFormComponent,
     ConfirmModalComponent,
+    ScreencastComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FontAwesomeModule,
-    FormsModule
+    FormsModule,
+    NgOptimizedImage
   ],
   providers: [],
   bootstrap: [AppComponent]
