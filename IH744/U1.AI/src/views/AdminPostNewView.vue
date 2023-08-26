@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import AdminPostForm from '@/components/AdminPostForm.vue';
 
 export default {
