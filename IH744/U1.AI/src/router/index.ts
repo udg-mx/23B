@@ -38,6 +38,11 @@ const router = createRouter({
       meta: { title: 'Detalle del Post' }
     },
     {
+      path: '/info',
+      name: 'info',
+      component: () => import('../views/InfoView.vue')
+    },
+    {
       path: '/about',
       name: 'about',
       component: () => import('../views/AboutView.vue')
