@@ -6,8 +6,8 @@
         <input v-model="post.title" type="text" id="title" class="mt-1 p-2 w-full border rounded" />
       </div>
       <div class="mb-4">
-        <label for="body" class="block font-medium text-gray-700">Descripción</label>
-        <textarea v-model="post.description" id="body" class="mt-1 p-2 w-full border rounded" rows="3"></textarea>
+        <label for="description" class="block font-medium text-gray-700">Descripción</label>
+        <textarea v-model="post.description" id="description" class="mt-1 p-2 w-full border rounded" rows="3"></textarea>
       </div>
       <div class="mb-4">
         <label for="body" class="block font-medium text-gray-700">Contenido</label>
@@ -15,8 +15,8 @@
       </div>
 
       <div class="mb-4">
-        <label for="title" class="block font-medium text-gray-700">Autor</label>
-        <input v-model="post.author" type="text" id="title" class="mt-1 p-2 w-full border rounded" />
+        <label for="author" class="block font-medium text-gray-700">Autor</label>
+        <input v-model="post.author" type="text" id="author" class="mt-1 p-2 w-full border rounded" />
       </div>
       <div class="flex justify-end">
         <button type="button" @click="cancel" class="mr-2 px-4 py-2 bg-gray-300 text-black rounded">Cancelar</button>
