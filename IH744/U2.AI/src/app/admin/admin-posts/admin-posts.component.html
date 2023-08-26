@@ -25,7 +25,7 @@
         <td class="py-2 px-4 border-b">{{ post.title }}</td>
         <td class="py-2 px-4 border-b flex space-x-4 justify-end items-center py-6">
 
-          <button class="bg-red-500 text-white p-2 rounded flex items-center justify-center">
+          <button (click)="openDeletePostModal(post.id)"  class="bg-red-500 text-white p-2 rounded flex items-center justify-center">
             <fa-icon [icon]="faTrash"></fa-icon>
           </button >
 
@@ -49,8 +49,9 @@
 
 
   <div class="flex justify-end mt-4">
-    <button class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
-      Reestablecer Base de Datos
+
+    <button (click)="openResetDBModal()" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+      Restablecer Base de Datos
       <fa-icon [icon]="faRefresh"></fa-icon>
     </button>
 
@@ -59,4 +60,12 @@
       <fa-icon [icon]="faPlus"></fa-icon>
     </button>
   </div>
+
+  <app-confirm-modal
+    [isOpen]="isModalOpen"
+    [title]="currentTitle"
+    [message]="currentMessage"
+    (confirm)="handleModalConfirm()"
+    (cancel)="handleModalCancel()">
+  </app-confirm-modal>
 </div>
