@@ -1,12 +1,12 @@
 const catalog = {
 
     /**
-     * Catalog products
+     * Array de productos
      */
     products: [],
 
     /**
-     * Product categories
+     * Lista de categorías de productos
      */
     productCategories: {
         "electronicos": "Electrónicos",
@@ -16,7 +16,7 @@ const catalog = {
     },
 
     /**
-     * Product features
+     * Lista de características de productos
      */
     productFeatures: {
         "ecologico": "Ecológico",
@@ -27,7 +27,7 @@ const catalog = {
     },
 
     /**
-     * Product interface
+     * Interfaz de producto
      */
     productInterface: {
         id: 0,
@@ -40,21 +40,21 @@ const catalog = {
     },
 
     /**
-     * Initializes the catalog
+     * Inicializa el catálogo
      */
     init: function() {
 
-        // event listener modal
+        // event listener de agregar producto
         document.getElementById("addProductBtn").addEventListener("click", () => {
             this.new();
         });
 
-        // event listener submit
+        // event listener de enviar formulario
         document.getElementById("submitBtn").addEventListener("click", () => {
             this.submit();
         });
 
-        // event listener close modal
+        // event listener cerrar modal
         document.getElementById("cancelBtn").addEventListener("click", () => {
             this.closeModal();
         });
@@ -64,18 +64,18 @@ const catalog = {
     },
 
     /**
-     * Returns the next product id
+     * devuelve el siguiente id de producto
      * @returns {*}
      */
     nextProductID: function() {
-        // get the highest id from the products array and add 1
+        // obtiene el id más alto del array de productos y le suma 1
         return (this.products.length === 0 ? 0 : Math.max(...this.products.map(product => product.id))) + 1;
     },
 
     /**
-     * Seeds the catalog with sample products
+     * Siembra el catálogo con productos de ejemplo
      */
-    seedProducts: function ()
+    seedProducts: function()
     {
 
         const sampleProducts = [
@@ -114,28 +114,28 @@ const catalog = {
     },
 
     /**
-     * Displays the modal to add a new product
+     * Muestra el modal y rellena los campos del formulario (categorías y características)
      */
     new: function() {
 
-        // display modal
+        // mostrar modal
         document.getElementById("productModal").style.display = "flex";
 
-        // get category dropdown
+        // obtener dropdown de categorías
         const categoryDropdown = document.getElementById("productCategory");
 
-        // clear existing options
+        // eliminar opciones existentes
         while (categoryDropdown.firstChild) {
             categoryDropdown.removeChild(categoryDropdown.firstChild);
         }
 
-        // add default option
+        // crear opción por defecto
         const defaultOption = document.createElement("option");
         defaultOption.value = "";
         defaultOption.textContent = "Seleccione una categoría";
         categoryDropdown.appendChild(defaultOption);
 
-        // fill the dropdown with categories from productCategories
+        // rellenar el dropdown con categorías de productos
         for (const [key, value] of Object.entries(this.productCategories)) {
             const option = document.createElement("option");
             option.value = key;
@@ -143,24 +143,29 @@ const catalog = {
             categoryDropdown.appendChild(option);
         }
 
-        // clear existing features
+        // obtener contenedor de características
         const featuresContainer = document.getElementById("featuresContainer");
         featuresContainer.innerHTML = '';
 
-        // fill the container with features from productFeatures
+        // rellenar el contenedor de características
         for (const [key, value] of Object.entries(this.productFeatures)) {
 
+            // crea label
             const label = document.createElement("label");
             label.className = "feature-label mr-2";
 
+            // crea checkbox
             const checkbox = document.createElement("input");
             checkbox.type = "checkbox";
             checkbox.name = "features";
             checkbox.className = "mr-2";
             checkbox.value = key;
 
+            // agrega checkbox y texto al label
             label.appendChild(checkbox);
             label.appendChild(document.createTextNode(value));
+
+            // agrega label al contenedor de características
             featuresContainer.appendChild(label);
         }
 
@@ -168,120 +173,137 @@ const catalog = {
     },
 
     /**
-     * Closes the modal
+     * Cierra el modal y limpia el formulario
      */
     closeModal: function() {
-        // hide modal
+        // ocultar modal
         document.getElementById("productModal").style.display = "none";
 
-        // clear form
+        // limpiar formulario
         this.resetForm();
     },
 
     /**
-     * Adds a product to the catalog
+     * Agrega un producto al catálogo
      * @param product
      */
     add: function(product) {
 
-        // normalize product and add id
+        // noramiza el producto y agrega el id
         product = {...this.productInterface, ...product, id: this.nextProductID()}
 
-        // add product to array
+        // agrega el producto al array de productos
         this.products.push(product);
 
-        // render table
+        // renderiza la tabla
         this.render();
     },
 
     /**
-     * Renders the catalog
+     * Renderiza la tabla de productos
      */
     render: function() {
 
-        // get table body
+        // obtiene el objeto tbody de la tabla
         const tableBody = document.getElementById("productTable").querySelector("tbody");
-        // clear table body
+
+        // limpia el tbody
         tableBody.innerHTML = '';
 
-        // if no products, display message
+        // si no hay productos, muestra un mensaje
         if (this.products.length === 0)
         {
-            const row = document.createElement("tr");
+
+            // crea una celda con colspan 8 y muestra un mensaje
             const cell = document.createElement("td");
             cell.setAttribute("colspan", "8");
             cell.textContent = "No existen productos en el catálogo.";
             cell.classList.add("text-center", "italic");
+
+            // crea una fila y agrega la celda
+            const row = document.createElement("tr");
             row.appendChild(cell);
+
+            // agrega la fila al tbody
             tableBody.appendChild(row);
         }
         else {
 
-            // for each product, create a row and add it to the table body
+            // recorre el array de productos
             this.products.forEach(product => {
 
-                // normalize product
+                // normaliza el producto
                 product = {...this.productInterface, ...product};
 
-                // create row
+                // crea una fila y le agrega clases de tailwind
                 const row = document.createElement("tr");
                 row.className = 'hover:bg-gray-50 transition duration-150';
 
+                // crea una función para agregar celdas a la fila
                 const appendToRow = (data, orientation) =>
                 {
+                    // crea una celda
                     const cell = document.createElement("td");
 
+                    // agrega clases de tailwind
                     let cellClass = 'px-6 py-4 whitespace-no-wrap font-medium text-gray-500 text-sm leading-5';
+
+                    // agrega clases dependiendo si es par o impar
                     cellClass += (tableBody.children.length % 2 === 0 ? ' bg-gray-50' : ' bg-white');
+
+                    // agrega clases dependiendo de la orientación
                     if (orientation === 'end') cellClass += ' text-end';
 
-                    // set zebra style
+                    // agrega clases a la celda y agrega el texto
                     cell.className = cellClass;
                     cell.textContent = data;
+
+                    // agrega la celda a la fila
                     row.appendChild(cell);
                 }
 
-                // product id
+                // inserta el id del producto
                 appendToRow(product.id);
 
-                // product name
+                // inserta el nombre del producto
                 appendToRow(product.productName);
 
 
-                // product description
+                // inserta la descripción del producto
                 appendToRow(product.productDescription);
 
-                // product stock
+                // inserta la cantidad de stock
                 appendToRow(product.stockAmount);
 
-                // product price
+                // inserta el precio del producto
                 appendToRow(this.formatMoney(product.productPrice), 'end');
 
-                // product category
+                // inserta la categoría del producto
                 appendToRow(this.productCategories[product.productCategory]);
 
-                // product features
+                // inserta las características del producto
                 appendToRow(product.features.map(featureKey => this.productFeatures[featureKey]).join(", "));
 
-                // product actions
+                // inserta un botón de editar (proximo ejercicio)
                 appendToRow("");
 
-                // add row to table body
+                // agrega la fila al tbody
                 tableBody.appendChild(row);
             });
         }
     },
 
     /**
-     * Submits the form
+     * Agrega un producto al catálogo
      */
     submit: function() {
 
-        // if form is valid, add product and close modal
+        // si el formulario no es válido, no hace nada
         if (this.validateForm()) {
 
-            // create product object
+            // crea un objeto producto
             const product = {
+                ...this.productInterface,
                 productName: document.getElementById("productName").value,
                 productPrice: document.getElementById("productPrice").value,
                 stockAmount: document.getElementById("stockAmount").value,
@@ -290,20 +312,21 @@ const catalog = {
                 features: Array.from(document.querySelectorAll("input[name='features']:checked")).map(checkbox => checkbox.value)
             };
 
-            // add product
+            // inserta el producto en el catálogo
             this.add(product);
 
-            // close modal
+            // cierra el modal
             this.closeModal();
         }
     },
 
     /**
-     * Resets the form
+     * Limpia el formulario
      */
     // close modal
     resetForm: function() {
 
+        // vacía los campos del formulario
         document.getElementById("productName").value = '';
         document.getElementById("productPrice").value = '';
         document.getElementById("stockAmount").value = '';
@@ -311,6 +334,7 @@ const catalog = {
         document.getElementById("productCategory").value = '';
         document.querySelectorAll("input[name='features']").forEach(checkbox => checkbox.checked = false);
 
+        // resetea los estilos de validación
         this.validateApplyStyles("productName");
         this.validateApplyStyles("productPrice");
         this.validateApplyStyles("stockAmount");
@@ -321,11 +345,12 @@ const catalog = {
     },
 
     /**
-     * Validates the form
-     * @returns {*}
+     * Valida campos del formulario
+     * @returns {boolean}
      */
     validateForm: function() {
-        // validate each field
+
+        // valida cada campo
         const productIsValid = this.validateField('productName');
         const priceIsValid = this.validateDecimal('productPrice');
         const stockIsValid = this.validateInteger('stockAmount');
@@ -333,95 +358,126 @@ const catalog = {
         const categoryIsValid = this.validateField('productCategory');
         const featuresAreValid = this.validateFeatures();
 
+        // devuelve true si todos los campos son válidos
         return productIsValid && priceIsValid && stockIsValid && descriptionIsValid && categoryIsValid && featuresAreValid;
     },
 
     /**
-     * Validates a field
+     * Valida un campo
      * @param baseId
      * @returns {boolean}
      */
     validateField: function(baseId) {
+
+        // obtiene el elemento
         const element = document.getElementById(baseId);
+
+        // valida si está vacío
         const isError = element.value.trim() === "";
 
-        // apply styles
+        // aplica estilos
         this.validateApplyStyles(baseId, isError);
+
+        // devuelve true si no hay error
         return !isError;
     },
 
     /**
-     * Validates an integer
+     * Valida un campo tipo entero
      * @param baseId
      * @returns {boolean}
      */
     validateInteger: function(baseId) {
+
+        // obtiene el elemento
         const element = document.getElementById(baseId);
+
+        // valida si está vacío o si no es un número entero
         const isError =  !element.value || !/^-?\d+$/.test(element.value.trim());
 
-        // apply styles
+        // aplica estilos
         this.validateApplyStyles(baseId, isError);
+
+        // devuelve true si no hay error
         return !isError;
     },
 
     /**
-     * Validates a decimal
+     * Valida un campo tipo decimal
      * @param fieldId
      * @returns {boolean}
      */
     validateDecimal: function(fieldId) {
-        // get element and label
+
+        // obtiene el elemento
         const element = document.getElementById(fieldId);
+
+        // obtiene el label
         const label = document.getElementById(fieldId + 'Label');
+
+        // remueve los separadores de miles
         let value = element.value.trim();
         value = value.replace(/,/g, '');
 
 
-        // Use regex to check if the value is a float (with point as decimal and comma as thousand separators)
+        // valida si es un número decimal
         const isDecimal = /^(\d{1,3}(\.\d{3})*|\d+)(\.\d+)?$/.test(value);
-        console.log(value, isDecimal);
+
+        // valida si está vacío o si no es un número decimal
         const isError = !value || !isDecimal;
 
-        // apply styles
+        // aplica estilos
         this.validateApplyStyles(fieldId, isError);
+
+        // devuelve true si no hay error
         return !isError;
     },
 
     /**
-     * Validates features
+     * Valida las características
      * @returns {boolean}
      */
     validateFeatures: function() {
-        // get label and error elements
+
+        // obtiene las características seleccionadas
         const features = document.querySelectorAll("input[name='features']:checked");
-        const label = document.getElementById("featuresLabel");
-        const errorDiv = document.getElementById("featuresError");
+
+        // valida si no hay características seleccionadas
         const isError = features.length < 1;
+
+        // aplica estilos
         this.validateApplyStyles("features", isError)
+
+        // devuelve true si no hay error
         return !isError;
     },
 
     /**
-     * Applies styles to a field
+     * Aplica estilos de validación
      * @param fieldID
      * @param isError
      */
     validateApplyStyles: function(fieldID, isError) {
 
+        // obtiene los elementos
         const element = document.getElementById(fieldID);
         const label = document.getElementById(fieldID + 'Label');
         const errorDiv = document.getElementById(fieldID + 'Error');
 
-        // element exists
+        // si el elemento existe
         if (element) {
 
+            // si hay error
             if (isError === true) {
                 element.classList.add('border-red-500');
                 element.classList.remove('border-green-500');
-            } else if (isError === false) {
+            }
+            // si no hay error
+            else if (isError === false) {
                 element.classList.remove('border-red-500');
                 element.classList.add('border-green-500');
             }
+            // si no se especifica error
             else
             {
                 element.classList.remove('border-red-500');
@@ -429,18 +485,23 @@ const catalog = {
             }
         }
 
-        // label exists
+        // si el label existe
         if (label) {
+
+
+            // si hay error
             if (isError === true)
             {
                 label.classList.add('text-red-500');
                 label.classList.remove('text-green-500');
             }
+            // si no hay error
             else if (isError === false)
             {
                 label.classList.remove('text-red-500');
                 label.classList.add('text-green-500');
             }
+            // si no se especifica error
             else
             {
                 label.classList.remove('text-red-500');
@@ -448,12 +509,16 @@ const catalog = {
             }
         }
 
-        // error container exists
+        // si el div de error existe
         if (errorDiv)
         {
+
+            // si hay error, muestra el mensaje de error
             if (isError === true) {
                 errorDiv.innerText = isError ? "Por favor, corrige el campo" : "";
-            } else {
+            }
+            // oculta el mensaje de error
+            else {
                 errorDiv.innerText = "";
             }
         }
@@ -461,31 +526,31 @@ const catalog = {
     },
 
     /**
-     * Formats a number as money
+     * Formatea un número a moneda
      * @param number
      * @returns {string}
      */
     formatMoney: function(number) {
 
-        // if no number, return "$0.00"
+        // si no hay número, devuelve "$0.00"
         if (!number) return "$0.00";
 
-        // remove all non-numeric characters except dots
+        // si es un string, elimina los caracteres no numéricos
         if( typeof number === 'string' ) number = number.replace(/[^0-9.]/g, '');
 
-        // convert to string
+        // convierte a float
         const floatValue = typeof number === "number" ? number : parseFloat(number);
 
-        // if not a number, return "$0.00"
+        // si no es un número, devuelve "$0.00"
         if (isNaN(floatValue)) return "$0.00";
 
-        // format number
+        // formatea el número
         const formattedNumber = floatValue.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
 
-        // return formatted number
+        // devuelve el número formateado
         return "$" + formattedNumber;
     }
 };
 
-// initialize catalog
+// inicializa el catálogo
 catalog.init();
