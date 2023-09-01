@@ -18,7 +18,7 @@
             <div class="flex items-center lg:order-2">
 
                 <span class="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-blue-900 dark:text-blue-300">IH721 - Desarrollo para Front End</span>
-                <span class="bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-400 border border-gray-500">U1.A2</span>
+                <span class="bg-gray-100 text-gray-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded mr-2 dark:bg-gray-700 dark:text-gray-400 border border-gray-500">U2.A2</span>
                 <span class="bg-blue-100 text-blue-800 text-xs font-medium inline-flex items-center px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">222959611 - &#70;&#101;&#114;&#110;&#97;&#110;&#100;&#111; &#79;&#106;&#101;&#100;&#97;</span>
 
             </div>
@@ -35,45 +35,52 @@
         <div class="flex space-x-4">
 
             <div class="w-1/2">
+                <form id="blogPostForm" class="bg-white p-6 rounded shadow-md">
 
-                <form id="productForm" class="bg-white p-6 rounded shadow-md">
-
-                    <!-- Nombre del Producto -->
-                    <label for="productName" id="productNameLabel" class="block mb-2 text-sm">Nombre del Producto:</label>
-                    <input type="text" id="productName" class="mb-4 w-full p-2 border rounded" value="Juego de Mesa Ecológico">
-
-                    <!-- Precio -->
-                    <label for="productPrice" id="productPriceLabel" class="block mb-2 text-sm">Precio:</label>
-                    <input type="text" id="productPrice" class="mb-4 w-full p-2 border rounded" value="1250.00">
-
-                    <!-- Cantidad en Stock -->
-                    <label for="stockAmount" id="stockAmountLabel" class="block mb-2 text-sm">Cantidad en Stock:</label>
-                    <input type="text" id="stockAmount" class="mb-4 w-full p-2 border rounded" value="5">
+                    <!-- Título -->
+                    <label for="postTitle" id="postTitleLabel" class="block mb-2 text-sm">Título:</label>
+                    <input type="text" id="postTitle" class="mb-4 w-full p-2 border rounded" placeholder="Título del artículo...">
 
                     <!-- Descripción -->
-                    <label for="productDescription" id="productDescriptionLabel" class="block mb-2 text-sm">Descripción:</label>
-                    <textarea id="productDescription" class="mb-4 w-full p-2 border rounded">Juego de mesa fabricado con materiales sostenibles y tintas naturales.</textarea>
+                    <label for="postDescription" id="postDescriptionLabel" class="block mb-2 text-sm">Descripción:</label>
+                    <textarea id="postDescription" class="mb-4 w-full p-2 border rounded" placeholder="Breve descripción del artículo..."></textarea>
 
-                    <!-- Categoría -->
-                    <label for="productCategory" id="productCategoryLabel" class="block mb-2 text-sm">Categoría:</label>
-                    <select id="productCategory" class="mb-4 w-full p-2 border rounded">
-                        <option value="">Seleccione una categoría</option>
-                        <option value="electronicos">Electrónicos</option>
-                        <option value="ropa">Ropa</option>
-                        <option value="alimentos">Alimentos</option>
-                        <option value="juguetes" selected>Juguetes</option>
+                    <!-- Autor -->
+                    <label for="postAuthor" id="postAuthorLabel" class="block mb-2 text-sm">Autor:</label>
+                    <select id="postAuthor" class="mb-4 w-full p-2 border rounded">
+                        <option value="">Seleccione un autor</option>
+                        <option value="shigeru_miyamoto">Shigeru Miyamoto</option>
+                        <option value="sid_meier">Sid Meier</option>
+                        <option value="john_carmack">John Carmack</option>
+                        <option value="jane_mcgonigal">Jane McGonigal</option>
                     </select>
 
-                    <!-- Características -->
-                    <label class="block mb-2 text-sm" id="featuresLabel">Características:</label>
-                    <div class="mb-4 space-y-2" id="featuresDiv">
-                        <label><input type="checkbox" class="mr-2" value="ecologico" name="features" checked> Ecológico</label>
-                        <label><input type="checkbox" class="mr-2" value="importado" name="features" checked> Importado</label>
-                        <label><input type="checkbox" class="mr-2" value="oferta" name="features"> En Oferta</label>
-                        <label><input type="checkbox" class="mr-2" value="popular" name="features"> Popular</label>
-                        <label><input type="checkbox" class="mr-2" value="nuevo" name="features"> Nuevo Lanzamiento</label>
+                    <!-- Categoría -->
+                    <label for="postCategory" id="postCategoryLabel" class="block mb-2 text-sm">Categoría:</label>
+                    <select id="postCategory" class="mb-4 w-full p-2 border rounded">
+                        <option value="">Seleccione una categoría</option>
+                    </select>
+
+                    <!-- Tags -->
+                    <label class="block mb-2 text-sm" id="tagsLabel">Etiquetas:</label>
+                    <div class="mb-4 space-y-2" id="tagsDiv">
+                        <label><input type="checkbox" class="mr-2" value="multijugador" name="postTags"> Multijugador</label>
+                        <label><input type="checkbox" class="mr-2" value="graficos_ultima_generacion" name="postTags"> Gráficos de Última Generación</label>
+                        <label><input type="checkbox" class="mr-2" value="indie" name="postTags"> Indie</label>
+                        <label><input type="checkbox" class="mr-2" value="realidad_virtual" name="postTags"> Realidad Virtual</label>
                     </div>
-                    <span class="text-red-500" id="featuresError"></span>
+
+                    <!-- Contenido del Artículo -->
+                    <label for="postContent" id="postContentLabel" class="block mb-2 text-sm">Contenido del Artículo:</label>
+                    <textarea id="postContent" class="mb-6 w-full p-2 border rounded" placeholder="Escribe el contenido del artículo aquí..." rows="10"></textarea>
+
+                    <!-- Imagen Destacada -->
+                    <label for="postImage" id="postImageLabel" class="block mb-2 text-sm">Imagen Destacada (url):</label>
+                    <input type="text" id="postImage" class="mb-4 w-full p-2 border rounded" placeholder="Imagen de la publicación...">
+
+                    <!-- Fecha de Publicación -->
+                    <label for="postDate" id="postDateLabel" class="block mb-2 text-sm">Fecha de Publicación:</label>
+                    <input type="date" id="postDate" class="mb-4 w-full p-2 border rounded">
 
                 </form>
 
