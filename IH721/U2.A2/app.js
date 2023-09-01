@@ -140,18 +140,9 @@ const formConverter = new class {
             postImage: document.getElementById('postImage').value
         };
 
-        // muestra el objeto JSON en el textarea
-        this.displayJsonObject(formData);
-    }
-
-    /**
-     * Muestra el objeto JSON en el textarea
-     * @param data
-     */
-    displayJsonObject(data) {
 
         // muestra el objeto JSON en el textarea
-        document.getElementById('jsonOutput').value = JSON.stringify(data, null, 4);
+        document.getElementById('jsonOutput').value = JSON.stringify(formData, null, 4);
 
         // convierte el objeto JSON a una tabla
         this.json2Table();
@@ -170,7 +161,8 @@ const formConverter = new class {
             postCategory: "review",
             postContent: "Desde la primera vez que pusimos nuestras manos en 'Galaxy Raiders', supimos que estábamos ante algo especial. Ahora, con el lanzamiento de su secuela, el juego lleva todo a un nuevo nivel. Las gráficas, la historia y las mecánicas de juego han sido mejoradas para ofrecer una experiencia inigualable...",
             postDate: new Date().toISOString().split('T')[0], // Fecha actual
-            postImage: "https://placehold.co/600x400"
+            postImage: "https://placehold.co/600x400",
+            postTags: ["ps4", "nintendo", "pc"]
         })
 
 
@@ -195,7 +187,7 @@ const formConverter = new class {
         {
             // recorre los tags del post y marca los checkboxes correspondientes
             post.postTags.forEach(tag => {
-                document.querySelector(`input[name="tags"][value="${tag}"]`).checked = true;
+                document.querySelector(`input[name="postTags"][value="${tag}"]`).checked = true;
             });
         }
 
