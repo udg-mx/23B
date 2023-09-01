@@ -57,39 +57,16 @@ const SpeedTest = new class  {
         // variante de velocidad
         const speedVariant = 50;
 
-        // interfaz de entrada
-        const speedInterface = {
-            id: 0,
-            speed: 0,
-            time: 0,
-        };
 
         // genera 10 promesas
-        [
-            {...speedInterface, speed: 50},
-            {...speedInterface, speed: 100},
-            {...speedInterface, speed: 150},
-            {...speedInterface, speed: 200},
-            {...speedInterface, speed: 250},
-            {...speedInterface, speed: 300},
-            {...speedInterface, speed: 350},
-            {...speedInterface, speed: 400},
-            {...speedInterface, speed: 450},
-            {...speedInterface, speed: 500}
-        ].map((rawEntry, index) => {
+        [50, 100, 150, 200, 250, 300, 350, 400, 450, 500].map((speed, index) => {
 
-            // crea una copia del objeto de entrada
-            const entry = {...rawEntry};
-
-
-            // asigna un id y un tiempo aleatorio
-            entry.id = index + 1;
-
-            // asigna un tiempo aleatorio
-            entry.time = (Math.random() * targetTime) + 1;
-
-            // asigna una velocidad aleatoria
-            entry.speed = entry.speed + (Math.random() < 0.5 ? -1 : 1) * (Math.floor(Math.random() * speedVariant) + 1);
+            const entry =
+            {
+                id: index + 1, // id de la promesa
+                speed: speed + (Math.random() < 0.5 ? -1 : 1) * (Math.floor(Math.random() * speedVariant) + 1), // velocidad +- variante random
+                time: (Math.random() * targetTime) + 1, // tiempo de resolución random
+            };
 
             // crea una promesa
             const promise = new Promise((resolve) => {
@@ -105,6 +82,7 @@ const SpeedTest = new class  {
             });
 
 
+            // cuando la promesa se resuelve
             promise.then((entry) =>
             {
                 // finaliza la promesa en el contenedor de promesas
