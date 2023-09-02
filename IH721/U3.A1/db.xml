@@ -1,0 +1,74 @@
+<library>
+    <book ID="105" Title="The Great Gatsby" Author="F. Scott Fitzgerald" PublicationDate="1925" Genre="Fiction" Pages="180" ISBN="9780743273565" Price="10.99">
+        <Review>Una mirada crítica a la sociedad americana de los años 20 a través de la historia de Jay Gatsby.</Review>
+    </book>
+    <book ID="124" Title="1984" Author="George Orwell" PublicationDate="1949" Genre="Dystopian" Pages="328" ISBN="9780451524935" Price="12.99">
+        <Review>Una aterradora visión del futuro donde el totalitarismo y la vigilancia estatal dominan la vida de las personas.</Review>
+    </book>
+    <book ID="133" Title="To Kill a Mockingbird" Author="Harper Lee" PublicationDate="1960" Genre="Fiction" Pages="281" ISBN="9780061120084" Price="14.99">
+        <Review>Una historia sobre la injusticia racial y la pérdida de la inocencia en el sur de Estados Unidos.</Review>
+    </book>
+    <book ID="141" Title="The Catcher in the Rye" Author="J.D. Salinger" PublicationDate="1951" Genre="Fiction" Pages="214" ISBN="9780316769174" Price="11.99">
+        <Review>Las reflexiones y rebeliones de un joven llamado Holden Caulfield en la ciudad de Nueva York.</Review>
+    </book>
+    <book ID="159" Title="One Hundred Years of Solitude" Author="Gabriel García Márquez" PublicationDate="1967" Genre="Magical Realism" Pages="417" ISBN="9780060883287" Price="13.99">
+        <Review>La saga de la familia Buendía en Macondo, una mezcla de magia y realidad.</Review>
+    </book>
+    <book ID="167" Title="The Alchemist" Author="Paulo Coelho" PublicationDate="1988" Genre="Fiction" Pages="163" ISBN="9780061122415" Price="10.99">
+        <Review>La búsqueda de un joven pastor por descubrir su leyenda personal y encontrar su tesoro.</Review>
+    </book>
+    <book ID="174" Title="Pride and Prejudice" Author="Jane Austen" PublicationDate="1813" Genre="Romance" Pages="279" ISBN="9780141040349" Price="9.99">
+        <Review>Las complicadas relaciones amorosas en la sociedad inglesa del siglo XIX.</Review>
+    </book>
+    <book ID="182" Title="Sapiens: A Brief History of Humankind" Author="Yuval Noah Harari" PublicationDate="2011" Genre="Non-Fiction" Pages="443" ISBN="9780099590088" Price="15.99">
+        <Review>Una revisión profunda de la historia y evolución del ser humano desde sus orígenes hasta la actualidad.</Review>
+    </book>
+    <book ID="199" Title="The Book Thief" Author="Markus Zusak" PublicationDate="2005" Genre="Historical Fiction" Pages="552" ISBN="9780375831003" Price="12.99">
+        <Review>La vida de una joven en la Alemania nazi, contada por la Muerte.</Review>
+    </book>
+    <book ID="205" Title="Becoming" Author="Michelle Obama" PublicationDate="2018" Genre="Memoir" Pages="448" ISBN="9781524763138" Price="16.99">
+        <Review>Las memorias de la ex primera dama de Estados Unidos, Michelle Obama.</Review>
+    </book>
+    <book ID="211" Title="Brave New World" Author="Aldous Huxley" PublicationDate="1932" Genre="Dystopian" Pages="268" ISBN="9780060850524" Price="10.99">
+        <Review>Una visión futurista donde la tecnología y la ciencia dominan la sociedad.</Review>
+    </book>
+    <book ID="219" Title="Thinking, Fast and Slow" Author="Daniel Kahneman" PublicationDate="2011" Genre="Non-Fiction" Pages="499" ISBN="9780374533557" Price="14.99">
+        <Review>El funcionamiento de la mente humana y cómo tomamos decisiones.</Review>
+    </book>
+    <book ID="227" Title="Harry Potter and the Philosopher's Stone" Author="J.K. Rowling" PublicationDate="1997" Genre="Fantasy" Pages="223" ISBN="9780747532699" Price="10.99">
+        <Review>El inicio de las aventuras del joven mago Harry Potter en Hogwarts.</Review>
+    </book>
+    <book ID="235" Title="The Help" Author="Kathryn Stockett" PublicationDate="2009" Genre="Historical Fiction" Pages="464" ISBN="9780399155345" Price="11.99">
+        <Review>Historias de mujeres afroamericanas trabajando para familias blancas en Mississippi durante los años 60.</Review>
+    </book>
+    <book ID="251" Title="The Hunger Games" Author="Suzanne Collins" PublicationDate="2008" Genre="Dystopian" Pages="374" ISBN="9780439023481" Price="10.99">
+        <Review>Un juego mortal en un futuro distópico donde jóvenes luchan hasta la muerte.</Review>
+    </book>
+    <book ID="259" Title="A Game of Thrones" Author="George R.R. Martin" PublicationDate="1996" Genre="Fantasy" Pages="694" ISBN="9780553103540" Price="12.99">
+        <Review>Intrigas, batallas y luchas por el poder en el mundo ficticio de Westeros.</Review>
+    </book>
+    <book ID="267" Title="The Kite Runner" Author="Khaled Hosseini" PublicationDate="2003" Genre="Historical Fiction" Pages="371" ISBN="9781594480003" Price="10.99">
+        <Review>Una historia de amistad y redención en Afganistán.</Review>
+    </book>
+    <book ID="275" Title="The Girl with the Dragon Tattoo" Author="Stieg Larsson" PublicationDate="2005" Genre="Mystery" Pages="465" ISBN="9780307269751" Price="11.99">
+        <Review>Una investigación periodística se convierte en un misterio peligroso.</Review>
+    </book>
+    <book ID="283" Title="The Goldfinch" Author="Donna Tartt" PublicationDate="2013" Genre="Fiction" Pages="775" ISBN="9780316055437" Price="14.99">
+        <Review>La vida de un joven cambia después de una explosión en un museo y el robo de una obra maestra.</Review>
+    </book>
+    <book ID="291" Title="Educated" Author="Tara Westover" PublicationDate="2018" Genre="Memoir" Pages="352" ISBN="9780399590504" Price="14.99">
+        <Review>La lucha de una mujer por educarse a pesar de crecer en una familia fundamentalista en Idaho.</Review>
+    </book>
+    <book ID="299" Title="Where the Crawdads Sing" Author="Delia Owens" PublicationDate="2018" Genre="Mystery" Pages="368" ISBN="9780735219090" Price="13.99">
+        <Review>Una misteriosa muerte en un tranquilo pueblo de Carolina del Norte.</Review>
+    </book>
+    <book ID="307" Title="The Nightingale" Author="Kristin Hannah" PublicationDate="2015" Genre="Historical Fiction" Pages="440" ISBN="9780312577223" Price="12.99">
+        <Review>Dos hermanas luchando por sobrevivir en la Francia ocupada durante la Segunda Guerra Mundial.</Review>
+    </book>
+    <book ID="315" Title="The Martian" Author="Andy Weir" PublicationDate="2014" Genre="Science Fiction" Pages="369" ISBN="9780804139021" Price="12.99">
+        <Review>La lucha de un astronauta por sobrevivir en Marte después de ser dejado atrás por su equipo.</Review>
+    </book>
+    <book ID="323" Title="Atomic Habits" Author="James Clear" PublicationDate="2018" Genre="Self-help" Pages="319" ISBN="9780735211292" Price="15.99">
+        <Review>Cómo pequeños cambios en los hábitos pueden llevar a grandes resultados en nuestra vida.</Review>
+    </book>
+</library>

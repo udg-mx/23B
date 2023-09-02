@@ -1,0 +1,64 @@
+.controls-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.entries-control,
+.search-control,
+.pagination-control {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-control {
+    flex-grow: 2;
+}
+
+#searchBox {
+    width: 120px;
+}
+
+#jsonTable
+{
+    width: 800px;
+}
+
+#toolbar
+{
+    margin-top: 20px;
+    width: 800px;
+}
+
+th
+{
+    padding: 10px;
+    cursor: pointer;
+}
+
+th[data-field="ID"] {
+    width: 5%;
+}
+
+th[data-field="Title"] {
+    width: 30%;
+}
+
+th[data-field="Author"] {
+    width: 20px;
+}
+
+th[data-field="PublicationDate"] {
+    width: 10px;
+}
+
+th[data-field="Genre"] {
+    width: 15px;
+}
+
+th[data-field="Price"] {
+    width: 15px;
+}
