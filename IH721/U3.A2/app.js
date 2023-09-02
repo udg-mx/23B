@@ -15,7 +15,7 @@
             nextButton: '#nextPage',
             paginator: '#paginator',
             pageIndicator: '#pageIndicator',
-            xmlUrl: 'https://udg.s3.amazonaws.com/LDSW/IH721/U3.A2/db.xml'
+            xmlUrl: 'https://721-u3.udgv.dev/U3.A2/db.xml'
         }, ...options};
 
         // datos del xml
@@ -116,6 +116,9 @@
                 // agrega la fila al tbody
                 tbody.append(tr);
             });
+
+            // actualiza el total de items
+            $('#total-items').html(filteredData.length);
 
             // actualiza el total de páginas
             const totalPages = Math.ceil(filteredData.length / settings.entriesPerPage);
