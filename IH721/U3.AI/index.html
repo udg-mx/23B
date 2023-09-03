@@ -83,11 +83,28 @@
             <!-- cuerpo de la tabla -->
             <tbody class="bg-white"></tbody>
         </table>
+        <div id="footer" class="mt-4 text-end"><a href="#" id="reset-search" class="border border-gray-300 bg-blue-500 text-white rounded px-2 py-1">Restablecer Términos de Búsqueda</a> </div>
 
         <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center bg-gray-700 bg-opacity-50 z-50 hidden" id="loader-overlay">
             <i class="fa fa-spinner text-blue-500" style="font-size:24px;"></i>
         </div>
 
+        <div id="search-validation-dialog" class="ui-dialog" style="display: none;" title="Término de Búsqueda">
+            <p>Las búsquedas requieren de al menos 3 caracteres</p>
+        </div>
+
+        <div id="no-results-dialog" class="ui-dialog" style="display: none;" title="Búsqueda sin resultados">
+            <p>No se encontraron resultados para tu búsqueda.</p>
+        </div>
+
+
+        <div id="reset-confirm" style="display: none;" title="Confirmación">
+            <p>¿Deseas restablecer los resultados de búsqueda?</p>
+        </div>
+
+        <div id="link-confirm" style="display: none;" title="Confirmación">
+            <p>¿Deseas abrir el libro?</p>
+        </div>
 
 
     </div>

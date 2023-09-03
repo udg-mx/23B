@@ -69,7 +69,11 @@ tbody td {
     border-bottom: 1px solid #e2e8f0;  /* Borde inferior para las celdas del cuerpo */
 }
 
-#loader-overlay
+#loader-overlay, #footer
 {
     width: 900px;
+}
+#no-results-dialog
+{
+    display: none;
 }

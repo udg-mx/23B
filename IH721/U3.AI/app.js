@@ -12,6 +12,7 @@
                 entriesPerPage: 10,
                 searchBox: '#searchBox',
                 searchButton: '#searchButton',
+                searchReset: '#reset-search',
                 entriesSelect: '#entriesPerPage',
                 prevButton: '#prevPage',
                 firstButton: '#firstPage',
@@ -126,7 +127,7 @@
                         if (field === 'url')
                         {
                             // agrega la celda a la fila
-                            tr.append(`<td class="text-center"><a href="${row[field] || ''}" class="text-blue-500 hover:text-blue-700 underline" target="_blank">Ver</a></td>`);
+                            tr.append(`<td class="text-center"><a href="${row[field] || ''}" class="book-link text-blue-500 hover:text-blue-700 underline" target="_blank">Ver</a></td>`);
                         }
                         else
                         {
@@ -139,6 +140,18 @@
                     // agrega la fila al tbody
                     tbody.append(tr);
                 });
+
+
+                $(".book-link").click(function(e) {
+
+                    // Detener la acción predeterminada del enlace
+                    e.preventDefault();
+
+                    // asigna el link y abre el diálogo
+                    $("#link-confirm").data('link', $(this).attr("href")).dialog("open");
+
+                });
+
             }
             else
             {
@@ -146,6 +159,17 @@
                 const tr = $('<tr></tr>');
                 tr.append(`<td colspan="5" class="text-center">No hay datos en la tabla</td>`);
                 tbody.append(tr);
+
+                $("#no-results-dialog").dialog("open");
+            }
+
+            if ($(settings.searchBox).val())
+            {
+                $('#footer').fadeIn();
+            }
+            else
+            {
+                $('#footer').fadeOut();
             }
 
             animationTable();
@@ -202,20 +226,24 @@
 
         }
 
+
+        /**
+         * Animación de las filas de la tabla.
+         */
         function animateRows()
         {
             $("#jsonTable tr").hover(
                 function() { // Al pasar el mouse
                     $(this).stop().animate({
                         "fontSize": "1.05em", // aumenta el tamaño de la fuente un 5%
-                    }, 200)
-                        .addClass("font-bold"); // 200 es la velocidad de la animación
+                    }, 200) // 200 es la velocidad de la animación
+                        .addClass("font-bold"); // agrega la clase font-bold
                 },
                 function() { // Al quitar el mouse
                     $(this).stop().animate({
                         "fontSize": "1em", // devuelve el tamaño de la fuente a su tamaño original
                     }, 200)
-                        .removeClass("font-bold");
+                        .removeClass("font-bold"); 88// elimina la clase font-bold
                 }
             );
         }
@@ -256,6 +284,67 @@
         }
 
         /**
+         * Inicializa los diálogos modales.
+         */
+        function modalResultsInit()
+        {
+            // diálogo de jquery ui
+            $(".ui-dialog").dialog({
+                autoOpen: false,
+                modal: true,
+                buttons: {
+                    "Aceptar": function() {
+                        $(this).dialog("close");
+                    }
+                },
+                show: 'fade',
+                hide: 'fade'
+
+            });
+
+            // diálogo de jquery ui
+            $("#reset-confirm").dialog({
+                autoOpen: false,
+                modal: true,
+                buttons: {
+                    "Aceptar": function() {
+
+                        $(settings.searchBox).val('');
+                        $(settings.searchButton).trigger('click');
+
+                        $(this).dialog("close");
+
+                    },
+                    "Cancelar": function ()
+                    {
+                        $(this).dialog("close");
+                    }
+                },
+                show: 'fade',
+                hide: 'fade'
+            });
+
+            $("#link-confirm").dialog({
+                autoOpen: false,
+                resizable: false,
+                height: "auto",
+                width: 400,
+                modal: true,
+                buttons: {
+                    "Abrir": function() {
+                        window.open($(this).data('link'), '_blank');
+                        $(this).dialog("close");
+                    },
+                    Cancelar: function() {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+        }
+
+
+
+        /**
          * Evento change del select de entradas por página.
          */
         $(settings.entriesSelect).change(() =>
@@ -279,12 +368,20 @@
         $(settings.searchBox).keypress(function (e) {
             if (e.which == 13) {
 
+
+
+                if ($(this).val().length > 0 && $(this).val().length < 3)
+                {
+                    $('#search-validation-dialog').dialog('open')
+                    return;
+                }
+
                 // vuelve a la primera página
                 currentPage = 1;
 
                 // carga los datos del api
                 fetchData().then(() => {
-                    renderTable.call($(settings.tableId)); // renderiza la tabla
+                    renderTable.call($(settings.tableId));
                 });
 
             }
@@ -297,6 +394,13 @@
          */
         $(settings.searchButton).on('click', () =>
         {
+
+            if ($(settings.searchBox).val().length > 0 && $(settings.searchBox).val().length < 3)
+            {
+                $('#search-validation-dialog').dialog('open')
+                return;
+            }
+
             // vuelve a la primera página
             currentPage = 1;
 
@@ -387,7 +491,6 @@
             fetchData().then(() => {
                 renderTable.call(this); // renderiza la tabla
             });
-
         });
 
         /**
@@ -406,6 +509,13 @@
 
         });
 
+        $(settings.searchReset).click(() =>
+        {
+
+            $("#reset-confirm").dialog('open');
+
+        });
+
         /**
          * Carga los datos del api.
          */
@@ -413,7 +523,15 @@
             renderTable.call(this); // renderiza la tabla
         });
 
+        /**
+         * inicializa la animación de los botones
+         */
         animateButtons();
+
+        /**
+         * inicializa los diálogos modales
+         */
+        modalResultsInit();
 
         return this;
     };
