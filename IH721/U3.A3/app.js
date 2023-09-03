@@ -41,8 +41,8 @@
         let sortOrder = 'asc';
 
 
-        // carga el xml
-        function loadApiData() {
+        // obtiene la lista de libros via ajax
+        function fetchData() {
 
             // obtiene el término de búsqueda
             const searchTerm = $(settings.searchBox).val();
@@ -216,7 +216,7 @@
             settings.entriesPerPage = parseInt($(settings.entriesSelect).val());
 
             // carga los datos del api
-            loadApiData().then(() => {
+            fetchData().then(() => {
                 renderTable.call(this);
             });
         });
@@ -232,7 +232,7 @@
                 currentPage = 1;
 
                 // carga los datos del api
-                loadApiData().then(() => {
+                fetchData().then(() => {
                     renderTable.call($(settings.tableId)); // renderiza la tabla
                 });
 
@@ -250,7 +250,7 @@
             currentPage = 1;
 
             // carga los datos del api
-            loadApiData().then(() => {
+            fetchData().then(() => {
                 renderTable.call($(settings.tableId)); // renderiza la tabla
             });
         });
@@ -278,7 +278,7 @@
 
 
             // carga los datos del api
-            loadApiData().then(() => {
+            fetchData().then(() => {
                 // renderiza la tabla
                 renderTable.call($(this).closest('table'));
             });
@@ -298,7 +298,7 @@
                 currentPage--;
 
                 // carga los datos del api
-                loadApiData().then(() => {
+                fetchData().then(() => {
                     renderTable.call(this);
                 });
             }
@@ -317,7 +317,7 @@
                 currentPage++;
 
                 // carga los datos del api
-                loadApiData().then(() => {
+                fetchData().then(() => {
                     renderTable.call(this); // renderiza la tabla
                 });
             }
@@ -333,7 +333,7 @@
             currentPage = 1;
 
             // carga los datos del api
-            loadApiData().then(() => {
+            fetchData().then(() => {
                 renderTable.call(this); // renderiza la tabla
             });
 
@@ -349,7 +349,7 @@
             currentPage = totalPages;
 
             // carga los datos del api
-            loadApiData().then(() => {
+            fetchData().then(() => {
                 renderTable.call(this); // renderiza la tabla
             });
 
@@ -358,7 +358,7 @@
         /**
          * Carga los datos del api.
          */
-        loadApiData().then(() => {
+        fetchData().then(() => {
             renderTable.call(this); // renderiza la tabla
         });
 
