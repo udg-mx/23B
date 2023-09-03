@@ -11,17 +11,17 @@ const app = new class {
         this.postBody = document.getElementById('postBody');
         this.commentsList = document.getElementById('commentsList');
 
-        this.initialize().finally(() => {  console.log('Initialized');});
-    }
-
-    async initialize() {
-
         // obtener los usuarios
-        await this.fetchUsers();
+        this.fetchUsers().then(() => {
+
+            // llena el select de usuarios
+            this.populateUserSelect();
+        });
 
         // inicializar los event listeners
         this.addEventListeners();
     }
+
 
     /**
      * Obtiene los usuarios de la API y los almacena en la propiedad users.
@@ -35,8 +35,7 @@ const app = new class {
         // almacena los usuarios en la propiedad users
         this.users = await response.json();
 
-        // llena el select de usuarios
-        this.populateUserSelect();
+
     }
 
     /**
@@ -113,7 +112,7 @@ const app = new class {
      * @param searchText
      * @returns {Promise<void>}
      */
-    async displayPosts(userId, searchText) {
+    async searchPosts(userId, searchText) {
 
         // limpiar los detalles del post
         this.clearPostDetails();
@@ -124,11 +123,20 @@ const app = new class {
         // obtener los posts
         const posts = await this.fetchPosts(userId, searchText);
 
-        // si no hay posts, muestra un mensaje
-        if (posts.length === 0) {
-            this.noPostsMessage.classList.remove('hidden');
-            return;
+
+        if (posts.length > 0)
+        {
+            this.displayPosts(posts) // muestra publicaciones
         }
+        else
+        {
+            this.emptyPosts(); // muestra mensaje de no hay publicaciones
+        }
+
+    }
+
+    displayPosts(posts)
+    {
 
         // si hay posts, oculta el mensaje
         this.noPostsMessage.classList.add('hidden');
@@ -141,7 +149,7 @@ const app = new class {
             listItem.classList.add('py-3', 'flex', 'justify-between', 'items-center');
 
             // obtiene el nombre del autor del post
-            const authorName = await this.getUserName(post.userId);
+            const authorName = this.getUserName(post.userId);
 
             // agrega el contenido al elemento li
             listItem.innerHTML = `
@@ -155,6 +163,13 @@ const app = new class {
             // agrega el elemento li a la lista
             this.postList.appendChild(listItem);
         }
+
+    }
+
+    emptyPosts()
+    {
+        this.noPostsMessage.classList.remove('hidden');
+        this.postList.innerHTML = '';
     }
 
     /**
@@ -174,8 +189,6 @@ const app = new class {
         this.postTitle.textContent = post.title;
         this.postBody.textContent = post.body;
 
-        // muestra los comentarios del post
-        this.displayComments(postId).then(() => {});
 
         // obtiene los detalles del autor del post
         const user = await this.fetchUserDetails(post.userId);
@@ -202,22 +215,29 @@ const app = new class {
         this.postDetails.classList.remove('hidden');
         this.noPostDetails.classList.add('hidden');
 
+        // muestra los comentarios del post
+        this.fetchComments(postId).then(comments =>
+        {
+            this.displayComments(comments);
+        });
+
+
+
 
         // obtiene el elemento li del post
         const postItem = this.postList.querySelector(`.post-item[data-id="${postId}"]`);
+
         // agrega la clase de post seleccionado
         postItem.classList.add('bg-gray-200');
     }
 
     /**
      * Muestra los comentarios de un post.
-     * @param postId
-     * @returns {Promise<void>}
+     * @param comments
+     * @returns void
      */
-    async displayComments(postId) {
+    displayComments(comments) {
 
-        // obtiene los comentarios del post
-        const comments = await this.fetchComments(postId);
 
         // limpia la lista de comentarios
         this.commentsList.innerHTML = '';
@@ -235,10 +255,10 @@ const app = new class {
 
             // agrega el contenido al elemento div
             userAndEmail.innerHTML = `
-            <i class="far fa-user mr-1"></i>
-            <span class="capitalize text-gray-600 font-bold">x${comment.name}</span>
-            <span class="ml-2">${comment.email}</span>
-        `;
+                <i class="far fa-user mr-1"></i>
+                <span class="capitalize text-gray-600 font-bold">x${comment.name}</span>
+                <span class="ml-2">${comment.email}</span>
+            `;
 
             // agrega el elemento div al elemento li
             listItem.appendChild(userAndEmail);
@@ -318,7 +338,7 @@ const app = new class {
     /**
      * Maneja el evento change del select de usuarios.
      */
-    handleUserSelectChange() {
+    handleFormChange() {
 
         // obtiene el id del usuario seleccionado
         const userId = this.userSelect.value;
@@ -327,28 +347,8 @@ const app = new class {
         const searchText = this.postInput.value;
 
         // muestra los posts del usuario seleccionado
-        this.displayPosts(userId, searchText).finally(() => {});
+        this.searchPosts(userId, searchText).finally(() => {});
 
-        // limpia los detalles del post
-        this.clearPostDetails()
-    }
-
-    /**
-     * Maneja el evento input del input de búsqueda de posts.
-     */
-    handlePostInputChange() {
-
-        // obtiene el id del usuario seleccionado
-        const userId = this.userSelect.value;
-
-        // obtiene el texto de búsqueda
-        const searchText = this.postInput.value;
-
-        // muestra los posts del usuario seleccionado
-        this.displayPosts(userId, searchText).finally(() => {});
-
-        // limpia los detalles del post
-        this.clearPostDetails()
     }
 
     /**
@@ -377,10 +377,10 @@ const app = new class {
     addEventListeners() {
 
         // event listener para el select de usuarios
-        this.userSelect.addEventListener('change', this.handleUserSelectChange.bind(this));
+        this.userSelect.addEventListener('change', this.handleFormChange.bind(this));
 
         // event listener para el input de búsqueda de posts
-        this.postInput.addEventListener('input', this.handlePostInputChange.bind(this));
+        this.postInput.addEventListener('input', this.handleFormChange.bind(this));
 
         // event listener para la lista de posts
         this.postList.addEventListener('click', this.handlePostButtonClick.bind(this));
