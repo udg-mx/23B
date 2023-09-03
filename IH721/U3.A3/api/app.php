@@ -31,7 +31,6 @@ class api
         if ($response['error'] ?? false) http_response_code(400);
         else if ($response['data'] ?? false) http_response_code(200);
         else if (!$response) http_response_code(404);
-        else http_response_code(204);
 
 
         // header del content type
