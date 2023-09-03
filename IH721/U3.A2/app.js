@@ -13,7 +13,6 @@
             entriesSelect: '#entriesPerPage',
             prevButton: '#prevPage',
             nextButton: '#nextPage',
-            paginator: '#paginator',
             pageIndicator: '#pageIndicator',
             xmlUrl: 'https://721-u3.udgv.dev/U3.A2/db.xml'
         }, ...options};
@@ -123,27 +122,6 @@
             // actualiza el total de páginas
             const totalPages = Math.ceil(filteredData.length / settings.entriesPerPage);
 
-            // obtiene el paginador
-            const paginator = $(settings.paginator);
-
-            // vacía el paginador
-            paginator.empty();
-
-            // recorre las páginas
-            for (let i = 1; i <= totalPages; i++)
-            {
-                // crea un botón
-                const btn = $(`<button class="ui-button">${i}</button>`);
-
-                // establece el evento click del botón para cambiar de página
-                btn.click(() => {
-                    currentPage = i;
-                    renderTable.call(this);
-                });
-
-                // agrega el botón al paginador
-                paginator.append(btn);
-            }
 
             // actualiza el indicador de página
             $(settings.pageIndicator).text(`${currentPage} de ${totalPages}`);
