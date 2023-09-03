@@ -162,49 +162,6 @@
         }
 
         /**
-         * Ordena los datos.
-         * @param data
-         * @param field
-         * @param order
-         * @returns {*}
-         */
-        function sortData(data, field, order) {
-
-            return data.sort((a, b) => {
-
-                // convierte los valores a minúsculas
-                const valueA = a[field].toString().toLowerCase();
-                const valueB = b[field].toString().toLowerCase();
-
-                // compara los valores. Si el orden es descendente, invierte el resultado
-                if (valueA < valueB) return order === 'asc' ? -1 : 1;
-
-                // compara los valores. Si el orden es descendente, invierte el resultado
-                if (valueA > valueB) return order === 'asc' ? 1 : -1;
-                return 0;
-            });
-        }
-
-        /**
-         *
-         * @param data
-         * @param page
-         * @param entries
-         * @returns {*}
-         */
-        function paginate(data, page, entries) {
-
-            // calcula el índice de inicio
-            const start = (page - 1) * entries;
-
-            // calcula el índice de fin
-            const end = start + entries;
-
-            // retorna los datos paginados
-            return data.slice(start, end);
-        }
-
-        /**
          * Evento change del select de entradas por página.
          */
         $(settings.entriesSelect).change(() =>
