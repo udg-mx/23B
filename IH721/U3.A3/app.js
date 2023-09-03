@@ -19,7 +19,7 @@
                 nextButton: '#nextPage',
                 paginator: '#paginator',
                 pageIndicator: '#pageIndicator',
-                apiUrl: 'http://localhost:8082/'
+                apiUrl: 'https://721-u3.udgv.dev/api/books/'
             }, ...options};
 
         // datos del xml
