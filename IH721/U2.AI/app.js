@@ -135,6 +135,10 @@ const app = new class {
 
     }
 
+    /**
+     * Muestra los posts en la lista de posts.
+     * @param posts
+     */
     displayPosts(posts)
     {
 
@@ -166,6 +170,9 @@ const app = new class {
 
     }
 
+    /**
+     * Muestra el mensaje de no hay posts.
+     */
     emptyPosts()
     {
         this.noPostsMessage.classList.remove('hidden');
